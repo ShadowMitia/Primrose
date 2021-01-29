@@ -18,7 +18,6 @@ func _process(delta):
 		get_material().set("shader_param/activation", val);
 		if x > 1.0:
 			done = true
-	
 
 func update_variation():
 	var duration = 2 # in seconds

@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name PrimRose
 
 export(float) var SPEED = 200
 
@@ -19,16 +20,5 @@ func _physics_process(delta):
 	velocity *= SPEED
 	
 	velocity = move_and_slide(velocity, Vector2.ZERO)
-
-
-func add_object():
-	var node = load("res://Scenes/ObjectInHand.tscn").instance()
-	add_child(node)
-	
-func remove_object():
-	remove_child(get_node("ObjectInHand"))
-	
-func has_object():
-	return get_node_or_null("ObjectInHand") != null
 
 

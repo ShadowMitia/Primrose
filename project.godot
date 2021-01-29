@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Sprite",
+"class": "PickableObject",
+"language": "GDScript",
+"path": "res://Scripts/PickableObject.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PrimRose",
+"language": "GDScript",
+"path": "res://Scripts/PrimRose.gd"
+} ]
 _global_script_class_icons={
-
+"PickableObject": "",
+"PrimRose": ""
 }
 
 [application]
