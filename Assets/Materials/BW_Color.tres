@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Shaders/bw_to_color_effect.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/activation = 0.0
+shader_param/origin = Vector2( 0, 0 )
+shader_param/simple = true
