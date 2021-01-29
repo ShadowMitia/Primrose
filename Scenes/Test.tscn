@@ -75,5 +75,7 @@ script = ExtResource( 3 )
 position = Vector2( 378.129, 286.749 )
 
 [node name="Human" parent="." instance=ExtResource( 5 )]
+material = ExtResource( 2 )
 position = Vector2( 177.2, 50.0565 )
+[connection signal="happy_human" from="Human" to="Human" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Human" to="TileMap" method="_on_Human_happy_human"]

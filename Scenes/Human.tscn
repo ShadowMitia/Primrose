@@ -13,6 +13,7 @@ extents = Vector2( 62.2834, 27.9142 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+use_parent_material = true
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
