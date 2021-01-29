@@ -1,15 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/PrimRose.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Shaders/BlackAndWhiteMaterial.tres" type="Material" id=3]
+[ext_resource path="res://Scenes/PickableObject.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Human.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="PrimRose" parent="." instance=ExtResource( 1 )]
+[node name="PickableObject" parent="." instance=ExtResource( 4 )]
 
 [node name="BW_Shader" type="Sprite" parent="."]
 material = ExtResource( 3 )
 position = Vector2( 165.029, 339.225 )
 scale = Vector2( 4.52384, 4.52384 )
 texture = ExtResource( 2 )
+
+[node name="PrimRose" parent="." instance=ExtResource( 1 )]
+position = Vector2( 723.197, 18.0487 )
+
+[node name="Human" parent="." instance=ExtResource( 5 )]

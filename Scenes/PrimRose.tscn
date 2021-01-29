@@ -4,7 +4,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.3493, 31.3386 )
+extents = Vector2( 31.3493, 14.4128 )
 
 [node name="PrimRose" type="KinematicBody2D"]
 position = Vector2( 518.475, 269.747 )
@@ -17,5 +17,8 @@ __meta__ = {
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.111362 )
+position = Vector2( 0, 16.8157 )
 shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
