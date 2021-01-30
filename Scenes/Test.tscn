@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/PrimRose.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Materials/BW_Color.tres" type="Material" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scenes/PickableObject.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Human.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sprites/Spritesheet/RPGpack_sheet_2X.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/PNG/Colored/genericItem_color_035.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/PNG/Colored/genericItem_color_031.png" type="Texture" id=8]
 
 [sub_resource type="TileSet" id=1]
 1/name = "Grass"
@@ -74,20 +76,22 @@ position = Vector2( 378.129, 286.749 )
 
 [node name="Human" parent="." instance=ExtResource( 5 )]
 material = ExtResource( 2 )
-position = Vector2( 177.2, 50.0565 )
-lost_object_ref = NodePath("../LostObjects/Book")
+position = Vector2( 175.94, 67.6954 )
+lost_object_ref = NodePath("../LostObjects/ColorThing")
 
 [node name="Human2" parent="." instance=ExtResource( 5 )]
 material = ExtResource( 2 )
 position = Vector2( 41.1285, 289.441 )
-lost_object_ref = NodePath("../LostObjects/RubberDuck")
+lost_object_ref = NodePath("../LostObjects/Book")
 
 [node name="LostObjects" type="Node" parent="."]
 
-[node name="Book" parent="LostObjects" instance=ExtResource( 4 )]
+[node name="ColorThing" parent="LostObjects" instance=ExtResource( 4 )]
+texture = ExtResource( 8 )
 
-[node name="RubberDuck" parent="LostObjects" instance=ExtResource( 4 )]
+[node name="Book" parent="LostObjects" instance=ExtResource( 4 )]
 position = Vector2( 709.559, 185.666 )
+texture = ExtResource( 7 )
 [connection signal="happy_human" from="Human" to="TileMap" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Human" to="Human" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Human2" to="TileMap" method="_on_Human_happy_human"]

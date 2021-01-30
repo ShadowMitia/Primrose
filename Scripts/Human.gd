@@ -12,9 +12,11 @@ onready var done:bool = false
 export var texture:Texture setget set_tex;
 export(String) var human_name;
 export(NodePath) var lost_object_ref;
-var lost_object;
+var lost_object:PickableObject;
 
-func set_tex(tex):
+onready var found_object = false
+
+func set_tex(tex:Texture):
 	texture = tex
 	if Engine.editor_hint:
 		get_node("Sprite").texture = tex
@@ -24,13 +26,29 @@ func _ready():
 	lost_object = get_node(lost_object_ref)
 
 func _on_Area2D_body_entered(body:PhysicsBody2D):
-	if body is PrimRose:
+	if !found_object && body is PrimRose:
+		
+		var sprite = Sprite.new()
+		sprite.texture = lost_object.texture.duplicate()
+		print(sprite.name)
+		sprite.name = lost_object.name + "_"
+		sprite.scale = Vector2(0.3, 0.3)
+		sprite.global_position += Vector2.UP * 50
+		add_child(sprite)
+		
 		for child in body.get_children():
 			if child is PickableObject && child == lost_object:
 				emit_signal("happy_human")
 				child.queue_free()
+				found_object = true
 
-func _process(delta):
+func _on_Area2D_body_exited(body:PhysicsBody2D):
+	if !found_object && body is PrimRose:
+		var sprite = get_node(lost_object.name + "_")
+		remove_child(sprite)
+
+
+func _process(delta:float):
 	if done:
 		return
 	if is_happy:
@@ -46,3 +64,5 @@ func _on_Human_happy_human(object):
 		# update_variation()
 		is_happy = true
 		object.queue_free()
+
+

@@ -8,7 +8,6 @@ onready var x:float = 0
 onready var done:bool = false
 
 func _process(delta):
-	
 	if done:
 		return
 		

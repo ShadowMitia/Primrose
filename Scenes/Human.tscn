@@ -29,3 +29,4 @@ modulate = Color( 1, 0.94902, 0, 1 )
 position = Vector2( -0.176773, 22.4506 )
 shape = SubResource( 2 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
