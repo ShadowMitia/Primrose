@@ -2,15 +2,24 @@
 
 importer="texture"
 type="StreamTexture"
+<<<<<<< HEAD:primrosetab.png.import
 path="res://.import/primrosetab.png-6e3f2ef11a060a8bef05f61a93b847ad.stex"
+=======
+path="res://.import/Primrose_marche.png-020bd1cfc42524db0257461b3fbdb9f1.stex"
+>>>>>>> 13910c4... White circles don't go over unhappy humans:Assets/Sprites/Primrose_marche.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD:primrosetab.png.import
 source_file="res://primrosetab.png"
 dest_files=[ "res://.import/primrosetab.png-6e3f2ef11a060a8bef05f61a93b847ad.stex" ]
+=======
+source_file="res://Assets/Sprites/Primrose_marche.png"
+dest_files=[ "res://.import/Primrose_marche.png-020bd1cfc42524db0257461b3fbdb9f1.stex" ]
+>>>>>>> 13910c4... White circles don't go over unhappy humans:Assets/Sprites/Primrose_marche.png.import
 
 [params]
 

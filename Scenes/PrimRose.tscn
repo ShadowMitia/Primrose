@@ -1,10 +1,59 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/PrimRose.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Primrose_marche.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.3493, 14.4128 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 1250, 1406 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 1250, 0, 1250, 1406 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 2500, 0, 1250, 1406 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 3750, 0, 1250, 1406 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 1406, 1250, 1406 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 1250, 1406, 1250, 1406 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 2500, 1406, 1250, 1406 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 3750, 1406, 1250, 1406 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "walk_down",
+"speed": 12.0
+} ]
 
 [node name="PrimRose" type="KinematicBody2D"]
 position = Vector2( 518.475, 269.747 )
@@ -22,3 +71,11 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 0.09, 0.09 )
+frames = SubResource( 10 )
+animation = "walk_down"
+frame = 5
+playing = true

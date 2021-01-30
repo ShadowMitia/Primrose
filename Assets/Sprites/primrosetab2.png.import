@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/primrosetab2.png-3f6e8bd52dbc68c1f019f7dafb92e8b9.stex"
+path="res://.import/primrosetab2.png-9ad2be731929986d0001fef238a7bef8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://primrosetab2.png"
-dest_files=[ "res://.import/primrosetab2.png-3f6e8bd52dbc68c1f019f7dafb92e8b9.stex" ]
+source_file="res://Assets/Sprites/primrosetab2.png"
+dest_files=[ "res://.import/primrosetab2.png-9ad2be731929986d0001fef238a7bef8.stex" ]
 
 [params]
 

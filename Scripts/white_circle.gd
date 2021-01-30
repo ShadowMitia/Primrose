@@ -5,6 +5,9 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+var color = Color.white
+var radius = 800.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,4 +19,4 @@ func _ready():
 #	pass
 
 func _draw():
-	draw_circle(Vector2.ZERO, 100.0, Color.white)
+	draw_circle(Vector2.ZERO, radius, color)
