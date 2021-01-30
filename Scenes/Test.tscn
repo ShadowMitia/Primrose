@@ -77,11 +77,13 @@ position = Vector2( 378.129, 286.749 )
 [node name="Human" parent="." instance=ExtResource( 5 )]
 material = ExtResource( 2 )
 position = Vector2( 175.94, 67.6954 )
+human_name = ""
 lost_object_ref = NodePath("../LostObjects/ColorThing")
 
 [node name="Human2" parent="." instance=ExtResource( 5 )]
 material = ExtResource( 2 )
 position = Vector2( 41.1285, 289.441 )
+human_name = ""
 lost_object_ref = NodePath("../LostObjects/Book")
 
 [node name="LostObjects" type="Node" parent="."]
@@ -94,5 +96,5 @@ position = Vector2( 709.559, 185.666 )
 texture = ExtResource( 7 )
 [connection signal="happy_human" from="Human" to="TileMap" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Human" to="Human" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Human2" to="Human2" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Human2" to="TileMap" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Human2" to="Human2" method="_on_Human_happy_human"]
