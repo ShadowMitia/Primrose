@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_viewport;
+
+void fragment() {
+ vec4 background_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+ vec4 mask = texture(mask_viewport, UV);
+
+ vec4 tex = background_color;
+
+ float lum = (tex.r+tex.g+tex.b) * 0.3333;
+ vec4 res = mix(vec4(vec3(lum), tex.a), tex, mask);
+ COLOR = res;
+
+}"
+
+[resource]
+shader = SubResource( 1 )

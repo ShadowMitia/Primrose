@@ -7,16 +7,16 @@ onready var is_happy:bool = false
 onready var x:float = 0
 onready var done:bool = false
 
-func _process(delta):
-	if done:
-		return
-		
-	if is_happy:
-		x += delta
-		var val =  1 - cos((x * PI) / 2)
-		get_material().set("shader_param/activation", val);
-		if x > 1.0:
-			done = true
+#func _process(delta):
+#	if done:
+#		return
+#
+#	if is_happy:
+#		x += delta
+#		var val =  1 - cos((x * PI) / 2)
+#		get_material().set("shader_param/activation", val);
+#		if x > 1.0:
+#			done = true
 
 func update_variation():
 	var duration = 2 # in seconds

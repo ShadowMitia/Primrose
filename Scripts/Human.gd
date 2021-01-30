@@ -43,6 +43,7 @@ func _on_Area2D_body_entered(body:PhysicsBody2D):
 				sprite = get_node(lost_object.name + "_")
 				remove_child(sprite)
 				found_object = true
+				is_happy = true
 
 func _on_Area2D_body_exited(body:PhysicsBody2D):
 	if !found_object && body is PrimRose:
@@ -50,18 +51,19 @@ func _on_Area2D_body_exited(body:PhysicsBody2D):
 		remove_child(sprite)
 
 
-func _process(delta:float):
-	if done:
-		return
-	if is_happy:
-		x += delta
-		var val =  1 - cos((x * PI) / 2)
-		get_material().set("shader_param/activation", val);
-		if x > 1.0:
-			done = true
+#func _process(delta:float):
+#	if done:
+#		return
+#	if is_happy:
+#		x += delta
+#		var val =  1 - cos((x * PI) / 2)
+#		get_material().set("shader_param/activation", val);
+#		if x > 1.0:
+#			done = true
 
 func _on_Human_happy_human(object):
 	if object == lost_object:
+		print("Found!")
 		# bool interpolate_property(object: Object, property: NodePath, initial_val: Variant, final_val: Variant, duration: float, trans_type: TransitionType = 0, ease_type: EaseType = 2, delay: float = 0)
 		# update_variation()
 		is_happy = true
