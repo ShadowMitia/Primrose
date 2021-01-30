@@ -19,6 +19,9 @@ func _physics_process(delta):
 	velocity = velocity.normalized()
 	velocity *= SPEED
 	
+	if velocity.length() > 0:
+		get_tree().root.get_child(0).get_node("Humans").update_nodes()
+	
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 
 
