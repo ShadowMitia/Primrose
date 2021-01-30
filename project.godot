@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "DebugViewer",
+"language": "GDScript",
+"path": "res://Scenes/DebugViewer.gd"
+}, {
 "base": "Sprite",
 "class": "PickableObject",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/PrimRose.gd"
 } ]
 _global_script_class_icons={
+"DebugViewer": "",
 "PickableObject": "",
 "PrimRose": ""
 }
