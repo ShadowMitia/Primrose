@@ -94,5 +94,5 @@ position = Vector2( 709.559, 185.666 )
 texture = ExtResource( 7 )
 [connection signal="happy_human" from="Human" to="TileMap" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Human" to="Human" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Human2" to="TileMap" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Human2" to="Human2" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Human2" to="TileMap" method="_on_Human_happy_human"]
