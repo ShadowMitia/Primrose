@@ -40,6 +40,8 @@ func _on_Area2D_body_entered(body:PhysicsBody2D):
 			if child is PickableObject && child == lost_object:
 				emit_signal("happy_human")
 				child.queue_free()
+				sprite = get_node(lost_object.name + "_")
+				remove_child(sprite)
 				found_object = true
 
 func _on_Area2D_body_exited(body:PhysicsBody2D):
