@@ -36,6 +36,11 @@ config/name="Couleur"
 run/main_scene="res://Scenes/Test.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+window/stretch/mode="2d"
+
 [input]
 
 move_up={

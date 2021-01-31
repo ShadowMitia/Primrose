@@ -60,6 +60,8 @@
 3/z_index = 0
 
 [sub_resource type="ImageTexture" id=2]
+flags = 0
+flags = 0
 size = Vector2( 1024, 600 )
 
 [sub_resource type="Shader" id=3]
@@ -146,6 +148,7 @@ texture = ExtResource( 11 )
 position = Vector2( 320.324, 213.408 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Mask"]
+visible = false
 margin_left = -320.0
 margin_top = -213.0
 margin_right = 501.0
