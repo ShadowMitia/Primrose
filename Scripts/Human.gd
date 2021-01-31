@@ -19,7 +19,8 @@ func set_tex(tex:Texture):
 	texture = tex
 		
 func _ready():
-	$Sprite.texture = texture
+	# $Sprite.texture = texture
+	$HappySprite.visible = false
 	lost_object = get_node(lost_object_ref)
 
 func _on_Area2D_body_entered(body:PhysicsBody2D):
@@ -37,6 +38,7 @@ func _on_Area2D_body_entered(body:PhysicsBody2D):
 		for child in body.get_children():
 			if child is PickableObject && child == lost_object:
 				emit_signal("happy_human")
+				$HappySprite.visible = true
 				child.queue_free()
 				sprite = get_node(lost_object.name + "_")
 				remove_child(sprite)

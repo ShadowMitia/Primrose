@@ -1,18 +1,19 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scenes/PrimRose.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Viewport.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/TileMap.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/PickableObject.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Human.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sprites/Spritesheet/RPGpack_sheet_2X.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Humans.gd" type="Script" id=7]
-[ext_resource path="res://Assets/Sprites/PNG/Colored/genericItem_color_031.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Voronoi.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/GameManager.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Sprites/PNG/Colored/genericItem_color_035.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/EndScreen.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/HUD.gd" type="Script" id=13]
+[ext_resource path="res://persosprimros.png" type="Texture" id=14]
+[ext_resource path="res://persosprimros2.png" type="Texture" id=15]
+[ext_resource path="res://Scripts/Human.gd" type="Script" id=16]
+[ext_resource path="res://MusiquePrimros1.ogg" type="AudioStream" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
@@ -212,6 +213,12 @@ points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
 } ]
 2/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 27.9171, 48.7095 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 62.2834, 27.9142 )
+
 [sub_resource type="ImageTexture" id=16]
 flags = 0
 flags = 0
@@ -273,6 +280,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="HUD"]
@@ -325,23 +335,97 @@ script = ExtResource( 3 )
 [node name="Humans" type="Node2D" parent="."]
 script = ExtResource( 7 )
 
-[node name="Human2" parent="Humans" instance=ExtResource( 5 )]
-position = Vector2( 113.919, 173.811 )
-lost_object_ref = NodePath("../../LostObjects/ColorThing")
+[node name="BookGirl" type="KinematicBody2D" parent="Humans"]
+position = Vector2( 159.225, 362.586 )
+script = ExtResource( 16 )
+texture = ExtResource( 14 )
+lost_object_ref = NodePath("../../LostObjects/Books")
 
-[node name="Human" parent="Humans" instance=ExtResource( 5 )]
-position = Vector2( 2166.79, -419.004 )
-lost_object_ref = NodePath("../../LostObjects/Book")
+[node name="SadSprite" type="Sprite" parent="Humans/BookGirl"]
+position = Vector2( -16.135, -28.76 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 850, 0, 1000, 1950 )
+
+[node name="HappySprite" type="Sprite" parent="Humans/BookGirl"]
+position = Vector2( -16.135, -28.7605 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 850, 0, 1000, 1950 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Humans/BookGirl"]
+position = Vector2( -0.280609, -16.413 )
+shape = SubResource( 23 )
+
+[node name="Area2D" type="Area2D" parent="Humans/BookGirl"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Humans/BookGirl/Area2D"]
+modulate = Color( 1, 0.94902, 0, 1 )
+position = Vector2( -0.971359, 4.96946 )
+shape = SubResource( 24 )
+
+[node name="UmbrellaGirl" type="KinematicBody2D" parent="Humans"]
+position = Vector2( 113.919, 173.811 )
+script = ExtResource( 16 )
+texture = ExtResource( 14 )
+lost_object_ref = NodePath("../../LostObjects/Umbrella")
+
+[node name="SadSprite" type="Sprite" parent="Humans/UmbrellaGirl"]
+position = Vector2( -17.6351, -35.7605 )
+scale = Vector2( 0.11, 0.11 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 0, 500, 800, 1250 )
+
+[node name="HappySprite" type="Sprite" parent="Humans/UmbrellaGirl"]
+position = Vector2( -17.6351, -35.7605 )
+scale = Vector2( 0.11, 0.11 )
+texture = ExtResource( 14 )
+region_enabled = true
+region_rect = Rect2( 0, 500, 800, 1250 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Humans/UmbrellaGirl"]
+position = Vector2( -0.280609, -16.413 )
+shape = SubResource( 23 )
+
+[node name="Area2D" type="Area2D" parent="Humans/UmbrellaGirl"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Humans/UmbrellaGirl/Area2D"]
+modulate = Color( 1, 0.94902, 0, 1 )
+position = Vector2( -0.971359, 4.96946 )
+shape = SubResource( 24 )
 
 [node name="LostObjects" type="Node" parent="."]
 
-[node name="ColorThing" parent="LostObjects" instance=ExtResource( 4 )]
+[node name="Books" parent="LostObjects" instance=ExtResource( 4 )]
 position = Vector2( 1610.75, 364.102 )
-texture = ExtResource( 8 )
+scale = Vector2( 0.09, 0.09 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 0, 2000, 1000, 1000 )
 
-[node name="Book" parent="LostObjects" instance=ExtResource( 4 )]
-position = Vector2( 1594.18, -904.136 )
-texture = ExtResource( 11 )
+[node name="Umbrella" parent="LostObjects" instance=ExtResource( 4 )]
+position = Vector2( 1390.44, 382.601 )
+scale = Vector2( 0.09, 0.09 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 1000, 2000, 1000, 1000 )
+
+[node name="GlueGun" parent="LostObjects" instance=ExtResource( 4 )]
+position = Vector2( 1276.08, 262.353 )
+scale = Vector2( 0.09, 0.09 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 2000, 2000, 1000, 1000 )
+
+[node name="BasketBall" parent="LostObjects" instance=ExtResource( 4 )]
+position = Vector2( 1292.9, 395.215 )
+scale = Vector2( 0.09, 0.09 )
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 3000, 2000, 1000, 1000 )
 
 [node name="Mask" type="Node2D" parent="."]
 position = Vector2( 320.324, 213.408 )
@@ -475,9 +559,13 @@ Everyone is happy again!"
 wait_time = 5.0
 one_shot = true
 [connection signal="timeout" from="HUD/Control/Timer" to="HUD/Control" method="_on_Timer_timeout"]
-[connection signal="happy_human" from="Humans/Human2" to="Humans/Human2" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Humans/Human2" to="TileMap" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Humans/Human" to="Humans/Human" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Humans/Human" to="TileMap" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Humans/BookGirl" to="TileMap" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Humans/BookGirl" to="Humans/BookGirl" method="_on_Human_happy_human"]
+[connection signal="body_entered" from="Humans/BookGirl/Area2D" to="Humans/BookGirl" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Humans/BookGirl/Area2D" to="Humans/BookGirl" method="_on_Area2D_body_exited"]
+[connection signal="happy_human" from="Humans/UmbrellaGirl" to="Humans/UmbrellaGirl" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Humans/UmbrellaGirl" to="TileMap" method="_on_Human_happy_human"]
+[connection signal="body_entered" from="Humans/UmbrellaGirl/Area2D" to="Humans/UmbrellaGirl" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Humans/UmbrellaGirl/Area2D" to="Humans/UmbrellaGirl" method="_on_Area2D_body_exited"]
 [connection signal="tween_completed" from="EndScreen/Tween" to="EndScreen" method="_on_Tween_tween_completed"]
 [connection signal="timeout" from="EndScreen/Timer" to="EndScreen" method="_on_Timer_timeout"]

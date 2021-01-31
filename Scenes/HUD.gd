@@ -32,6 +32,7 @@ func _on_Timer_timeout():
 	remove_text()
 	background.hide()
 	showing_text = false
+	get_node("../../GameMusic").play()
 
 
 
