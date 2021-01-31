@@ -28,10 +28,10 @@ func _on_Area2D_body_entered(body:PhysicsBody2D):
 	if !found_object && body is PrimRose:
 		lost_object.object_show()
 		var sprite = Sprite.new()
-		sprite.texture = lost_object.texture.duplicate()
-		print(sprite.name)
+		sprite = lost_object.duplicate()
 		sprite.name = lost_object.name + "_"
-		sprite.scale = Vector2(0.3, 0.3)
+		sprite.global_position = global_position
+		#sprite.scale = Vector2(0.3, 0.3)
 		sprite.global_position += Vector2.UP * 120
 		add_child(sprite)
 		
