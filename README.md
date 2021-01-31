@@ -1,6 +1,8 @@
 # Primrose
 A game made for Global Game Jam 2021 ! (Theme : Lost and Found)
 
+![screenshot](./screenshot.png)
+
 ## Description
 
 You're an alien called Primrose. You arrive on Earth and everything is black and white and all humans are sad. 
