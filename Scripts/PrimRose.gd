@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name PrimRose
 
-export(float) var SPEED = 200
+export(float) var SPEED = 400
 
 func _process(delta):
 	for i in get_slide_count():

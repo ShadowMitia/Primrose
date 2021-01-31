@@ -10,6 +10,10 @@ onready var black_circle_script = preload("res://Scripts/black_circle.gd")
 
 export(Texture) var texture;
 
+func _ready():
+	for child in get_children():
+		child.lost_object.object_hide()
+
 # Called when the node enters the scene tree for the first time.
 func update_nodes():
 	for child in get_children():

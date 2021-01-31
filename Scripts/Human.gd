@@ -23,8 +23,9 @@ func _ready():
 	lost_object = get_node(lost_object_ref)
 
 func _on_Area2D_body_entered(body:PhysicsBody2D):
+	
 	if !found_object && body is PrimRose:
-		
+		lost_object.object_show()
 		var sprite = Sprite.new()
 		sprite.texture = lost_object.texture.duplicate()
 		print(sprite.name)
