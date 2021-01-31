@@ -12,7 +12,8 @@ func remove_text():
 func _ready():
 	show() # Make sure text UI is always visible...
 	remove_text()
-	show_text("On a late spring morning... Walking along your favorite path through the woods.", 3, 6)
+	# show_text("On a late spring morning... Walking along your favorite path through the woods.", 3, 6)
+	show_text("You arrive on EARTH, but everything is GRAY ! Go and find a way to recolor the world!", 3, 6)
 
 func show_text(text, duration, disappears_after):
 	showing_text = true

@@ -461,12 +461,7 @@ margin_left = 397.0
 margin_top = 270.0
 margin_right = 666.0
 margin_bottom = 369.0
-text = "The atmosphere around seemed 
-more peaceful than before.
-You've never felt so relaxed.
-
-And yet you knew you had to come back...
- And help out more."
+text = "EARTH has it's colours back!"
 
 [node name="Tween" type="Tween" parent="EndScreen"]
 

@@ -16,6 +16,7 @@ func check_end_game():
 	print("Nodes left", len(nodes))
 	if len(nodes) == 1:
 		print("Game is done!")
+		get_node("EndScreen").show_credits()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
