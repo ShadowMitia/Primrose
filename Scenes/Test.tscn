@@ -336,7 +336,7 @@ script = ExtResource( 3 )
 script = ExtResource( 7 )
 
 [node name="UmbrellaGirl" type="KinematicBody2D" parent="Humans"]
-position = Vector2( 159.225, 362.586 )
+position = Vector2( 1650.55, 940.237 )
 script = ExtResource( 16 )
 texture = ExtResource( 14 )
 lost_object_ref = NodePath("../../LostObjects/Umbrella")
@@ -398,7 +398,7 @@ position = Vector2( -0.971359, 4.96946 )
 shape = SubResource( 24 )
 
 [node name="HeartGuy" type="KinematicBody2D" parent="Humans"]
-position = Vector2( 597.729, 370.359 )
+position = Vector2( 2296.7, -377.19 )
 script = ExtResource( 16 )
 texture = ExtResource( 14 )
 lost_object_ref = NodePath("../../LostObjects/GlueGun")
@@ -429,7 +429,7 @@ position = Vector2( -0.971359, 4.96946 )
 shape = SubResource( 24 )
 
 [node name="BasketballGuy" type="KinematicBody2D" parent="Humans"]
-position = Vector2( 751.729, 374.359 )
+position = Vector2( -471.532, 1001.09 )
 script = ExtResource( 16 )
 texture = ExtResource( 14 )
 lost_object_ref = NodePath("../../LostObjects/GlueGun")
@@ -462,28 +462,28 @@ shape = SubResource( 24 )
 [node name="LostObjects" type="Node" parent="."]
 
 [node name="Books" parent="LostObjects" instance=ExtResource( 4 )]
-position = Vector2( 1610.75, 364.102 )
+position = Vector2( 1954.32, -289.059 )
 scale = Vector2( 0.09, 0.09 )
 texture = ExtResource( 15 )
 region_enabled = true
 region_rect = Rect2( 0, 2000, 1000, 1000 )
 
 [node name="Umbrella" parent="LostObjects" instance=ExtResource( 4 )]
-position = Vector2( 1390.44, 382.601 )
+position = Vector2( -134.861, -25.1522 )
 scale = Vector2( 0.09, 0.09 )
 texture = ExtResource( 15 )
 region_enabled = true
 region_rect = Rect2( 1000, 2000, 1000, 1000 )
 
 [node name="GlueGun" parent="LostObjects" instance=ExtResource( 4 )]
-position = Vector2( 1273.44, 357.601 )
+position = Vector2( 952.523, 961.681 )
 scale = Vector2( 0.09, 0.09 )
 texture = ExtResource( 15 )
 region_enabled = true
 region_rect = Rect2( 2000, 2000, 1000, 1000 )
 
-[node name="GlueGun2" parent="LostObjects" instance=ExtResource( 4 )]
-position = Vector2( 1301.44, 159.601 )
+[node name="Basketball" parent="LostObjects" instance=ExtResource( 4 )]
+position = Vector2( 1014.5, 80.316 )
 scale = Vector2( 0.09, 0.09 )
 texture = ExtResource( 15 )
 region_enabled = true
