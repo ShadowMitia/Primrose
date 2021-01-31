@@ -289,10 +289,14 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 106.0
 margin_bottom = -11236.0
-text = "Texte du bidule machin"
+text = "You arrive on EARTH, but everything is GRAY ! Go and find a way to recolor the world!
+You and next to a human, he looks sad and depressed, without focus. Let's cheer him up somehow!"
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Control/Label"]
 modulate = Color( 0, 0, 0, 0.72549 )
@@ -322,20 +326,21 @@ script = ExtResource( 3 )
 script = ExtResource( 7 )
 
 [node name="Human2" parent="Humans" instance=ExtResource( 5 )]
-position = Vector2( 187.918, 197.356 )
+position = Vector2( 113.919, 173.811 )
 lost_object_ref = NodePath("../../LostObjects/ColorThing")
 
 [node name="Human" parent="Humans" instance=ExtResource( 5 )]
-position = Vector2( 300, 85.534 )
+position = Vector2( 2166.79, -419.004 )
 lost_object_ref = NodePath("../../LostObjects/Book")
 
 [node name="LostObjects" type="Node" parent="."]
 
 [node name="ColorThing" parent="LostObjects" instance=ExtResource( 4 )]
+position = Vector2( 1610.75, 364.102 )
 texture = ExtResource( 8 )
 
 [node name="Book" parent="LostObjects" instance=ExtResource( 4 )]
-position = Vector2( 709.559, 185.666 )
+position = Vector2( 1594.18, -904.136 )
 texture = ExtResource( 11 )
 
 [node name="Mask" type="Node2D" parent="."]
@@ -457,11 +462,12 @@ text = "Thanks for playing !"
 
 [node name="TheEnd" type="Label" parent="EndScreen/CanvasLayer/CenterContainer"]
 visible = false
-margin_left = 397.0
-margin_top = 270.0
-margin_right = 666.0
-margin_bottom = 369.0
-text = "EARTH has it's colours back!"
+margin_left = 443.0
+margin_top = 304.0
+margin_right = 621.0
+margin_bottom = 335.0
+text = "EARTH has it's colours back!
+Everyone is happy again!"
 
 [node name="Tween" type="Tween" parent="EndScreen"]
 
@@ -469,8 +475,8 @@ text = "EARTH has it's colours back!"
 wait_time = 5.0
 one_shot = true
 [connection signal="timeout" from="HUD/Control/Timer" to="HUD/Control" method="_on_Timer_timeout"]
-[connection signal="happy_human" from="Humans/Human2" to="TileMap" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Humans/Human2" to="Humans/Human2" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Humans/Human2" to="TileMap" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Humans/Human" to="Humans/Human" method="_on_Human_happy_human"]
 [connection signal="happy_human" from="Humans/Human" to="TileMap" method="_on_Human_happy_human"]
 [connection signal="tween_completed" from="EndScreen/Tween" to="EndScreen" method="_on_Tween_tween_completed"]
