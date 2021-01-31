@@ -214,10 +214,10 @@ points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
 2/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 27.9171, 48.7095 )
+extents = Vector2( 40.6016, 51.5812 )
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 62.2834, 27.9142 )
+extents = Vector2( 93.1787, 67.6303 )
 
 [sub_resource type="ImageTexture" id=16]
 flags = 0
@@ -336,7 +336,7 @@ script = ExtResource( 3 )
 script = ExtResource( 7 )
 
 [node name="UmbrellaGirl" type="KinematicBody2D" parent="Humans"]
-position = Vector2( 1650.55, 940.237 )
+position = Vector2( 1620.58, 864.105 )
 script = ExtResource( 16 )
 texture = ExtResource( 14 )
 lost_object_ref = NodePath("../../LostObjects/Umbrella")
@@ -360,6 +360,7 @@ position = Vector2( -0.280609, -16.413 )
 shape = SubResource( 23 )
 
 [node name="Area2D" type="Area2D" parent="Humans/UmbrellaGirl"]
+position = Vector2( 1.78174, 47.2176 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Humans/UmbrellaGirl/Area2D"]
 modulate = Color( 1, 0.94902, 0, 1 )
@@ -418,7 +419,7 @@ region_enabled = true
 region_rect = Rect2( 2000, 300, 800, 1600 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Humans/HeartGuy"]
-position = Vector2( -0.280609, -16.413 )
+position = Vector2( -11.5943, -15.7059 )
 shape = SubResource( 23 )
 
 [node name="Area2D" type="Area2D" parent="Humans/HeartGuy"]
@@ -432,7 +433,7 @@ shape = SubResource( 24 )
 position = Vector2( -471.532, 1001.09 )
 script = ExtResource( 16 )
 texture = ExtResource( 14 )
-lost_object_ref = NodePath("../../LostObjects/GlueGun")
+lost_object_ref = NodePath("../../LostObjects/Basketball")
 
 [node name="SadSprite" type="Sprite" parent="Humans/BasketballGuy"]
 position = Vector2( -17.1099, -35.6497 )
@@ -462,7 +463,7 @@ shape = SubResource( 24 )
 [node name="LostObjects" type="Node" parent="."]
 
 [node name="Books" parent="LostObjects" instance=ExtResource( 4 )]
-position = Vector2( 1954.32, -289.059 )
+position = Vector2( 1918.41, -309.264 )
 scale = Vector2( 0.09, 0.09 )
 texture = ExtResource( 15 )
 region_enabled = true

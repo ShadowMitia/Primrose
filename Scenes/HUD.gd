@@ -13,7 +13,8 @@ func _ready():
 	show() # Make sure text UI is always visible...
 	# remove_text()
 	# show_text("On a late spring morning... Walking along your favorite path through the woods.", 3, 6)
-	show_text("", 3, 6)
+	show_text("", 6, 12)
+	get_node("../../GameMusic").play()
 
 func show_text(text, duration, disappears_after):
 	showing_text = true
@@ -32,7 +33,6 @@ func _on_Timer_timeout():
 	remove_text()
 	background.hide()
 	showing_text = false
-	get_node("../../GameMusic").play()
 
 
 

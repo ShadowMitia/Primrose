@@ -6,10 +6,10 @@
 [ext_resource path="res://persosprimros.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 27.9171, 48.7095 )
+extents = Vector2( 40.6016, 51.5812 )
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 62.2834, 27.9142 )
+extents = Vector2( 93.1787, 67.6303 )
 
 [node name="Human" type="KinematicBody2D"]
 script = ExtResource( 2 )
