@@ -3,7 +3,6 @@ extends KinematicBody2D
 
 signal happy_human;
 
-onready var player = get_tree().root.get_child(0).get_node("PrimRose")
 
 onready var is_happy:bool = false
 onready var x:float = 0
@@ -18,8 +17,6 @@ onready var found_object = false
 
 func set_tex(tex:Texture):
 	texture = tex
-	if Engine.editor_hint:
-		get_node("Sprite").texture = tex
 		
 func _ready():
 	$Sprite.texture = texture
@@ -33,7 +30,7 @@ func _on_Area2D_body_entered(body:PhysicsBody2D):
 		print(sprite.name)
 		sprite.name = lost_object.name + "_"
 		sprite.scale = Vector2(0.3, 0.3)
-		sprite.global_position += Vector2.UP * 50
+		sprite.global_position += Vector2.UP * 120
 		add_child(sprite)
 		
 		for child in body.get_children():
@@ -44,6 +41,7 @@ func _on_Area2D_body_entered(body:PhysicsBody2D):
 				remove_child(sprite)
 				found_object = true
 				is_happy = true
+				get_tree().root.get_child(0).check_end_game()
 
 func _on_Area2D_body_exited(body:PhysicsBody2D):
 	if !found_object && body is PrimRose:
