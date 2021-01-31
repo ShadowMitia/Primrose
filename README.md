@@ -9,7 +9,7 @@ You're an alien called Primrose. You arrive on Earth and everything is black and
 They've all lost an object important to them and you decide to go and find them, and recolor everyone's lives!
 
 You can play the game [here]( 
-https://shadowmitia.github.io/Couleur/)
+https://shadowmitia.github.io/Primrose/)
 
 ## Team
 
