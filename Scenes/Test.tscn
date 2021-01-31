@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/PrimRose.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Materials/BW_Color.tres" type="Material" id=2]
+[ext_resource path="res://Scenes/Viewport.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/TileMap.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/PickableObject.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Human.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Sprites/Spritesheet/RPGpack_sheet_2X.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/PNG/Colored/genericItem_color_035.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Humans.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Sprites/PNG/Colored/genericItem_color_031.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Voronoi.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Sprites/PNG/Colored/genericItem_color_035.png" type="Texture" id=11]
 
 [sub_resource type="TileSet" id=1]
 1/name = "Grass"
@@ -57,34 +59,79 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="ImageTexture" id=2]
+size = Vector2( 1024, 600 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform sampler2D mask;
+
+void fragment() {
+	vec4 backkground_color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 color = texture(TEXTURE, UV);
+	vec4 mask_color = texture(mask, UV);
+	
+	vec4 tex = backkground_color;
+	
+	float lum = (tex.r+tex.g+tex.b) * 0.3333;
+	
+	vec4 res = mix(vec4(vec3(lum), tex.a), tex, mask_color);
+	// res *= color * (1.0 - mask_color);
+	COLOR = mix(res, vec4(1.0, 0.0, 0.0, 1.0), vec4(vec3(0.0), 1.0));
+}"
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Mask/Viewport")
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 3 )
+shader_param/mask = SubResource( 4 )
+
+[sub_resource type="ImageTexture" id=6]
+size = Vector2( 1024, 600 )
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Sprite
+
+onready var player = get_tree().root.get_child(0).get_node(\"PrimRose\")
+
+func _ready():
+	get_material().set(\"shader_param/texture\", get_viewport().get_camera());
+	pass # Replace with function body.
+
+#func _process(delta):
+#	rect_position = player.position
+"
+
+[node name="Node2D" type="Control"]
+margin_left = -29.1325
+margin_top = -1.97027
+margin_right = 994.867
+margin_bottom = 598.03
 __meta__ = {
-"_edit_horizontal_guides_": [ -235.088 ]
+"_edit_use_anchors_": false
 }
 
 [node name="TileMap" type="TileMap" parent="."]
-material = ExtResource( 2 )
 position = Vector2( -86.398, -76.0798 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 128, 128 )
 format = 1
-tile_data = PoolIntArray( -196606, 2, 0, -196605, 2, 1, -196604, 2, 2, -131072, 2, 0, -131071, 2, 0, -131070, 2, 0, -131069, 2, 0, -131068, 2, 0, -131067, 2, 0, -131066, 2, 0, -131065, 2, 0, -131064, 2, 0, -131063, 2, 0, -131062, 2, 0, -131061, 2, 0, -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, -65524, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 65536, 3, 0, 65537, 3, 1, 65538, 3, 1, 65539, 3, 1, 65540, 3, 1, 65541, 3, 1, 65542, 3, 2, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 131072, 3, 65536, 131073, 3, 65537, 131074, 3, 65537, 131075, 3, 65537, 131076, 3, 65537, 131077, 3, 65537, 131078, 3, 65539, 131079, 3, 1, 131080, 3, 1, 131081, 3, 1, 131082, 3, 1, 131083, 3, 2, 196608, 3, 65536, 196609, 3, 65537, 196610, 3, 65537, 196611, 3, 65537, 196612, 3, 65537, 196613, 3, 65537, 196614, 3, 65537, 196615, 3, 3, 196616, 3, 131073, 196617, 3, 131073, 196618, 3, 131073, 196619, 3, 131074, 262144, 3, 131072, 262145, 3, 131073, 262146, 3, 131073, 262147, 3, 4, 262148, 3, 65537, 262149, 3, 3, 262150, 3, 131073, 262151, 3, 131074, 327683, 3, 65536, 327684, 3, 65537, 327685, 3, 65538, 393219, 3, 65536, 393220, 3, 65537, 393221, 3, 65538, 458755, 3, 131072, 458756, 3, 131073, 458757, 3, 131074 )
+tile_data = PoolIntArray( -262148, 3, 0, -196613, 3, 0, -196612, 3, 0, -262141, 3, 0, -131076, 3, 0, -131075, 3, 0, -131074, 1, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -196605, 3, 0, -196604, 3, 1, -196603, 3, 1, -196602, 3, 1, -196601, 3, 1, -196600, 3, 1, -196599, 3, 1, -196598, 3, 1, -196597, 3, 1, -196596, 3, 1, -196595, 3, 1, -196594, 3, 1, -196593, 3, 2, -65540, 3, 0, -65539, 1, 0, -65538, 3, 0, -65537, 3, 2, -131072, 1, 0, -131071, 1, 0, -131070, 3, 0, -131069, 3, 65540, -131068, 3, 3, -131067, 3, 131073, -131066, 3, 131073, -131065, 3, 131073, -131064, 3, 131073, -131063, 3, 131073, -131062, 3, 131073, -131061, 3, 131073, -131060, 3, 131073, -131059, 3, 131073, -131058, 3, 4, -131057, 3, 65538, -4, 3, 0, -3, 3, 0, -2, 3, 65540, -1, 3, 65539, -65536, 3, 1, -65535, 3, 1, -65534, 3, 65540, -65533, 3, 65537, -65532, 3, 65538, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 1, 0, -65527, 1, 0, -65526, 1, 0, -65525, 1, 0, -65524, 1, 0, -65523, 1, 0, -65522, 3, 65536, -65521, 3, 65538, 65533, 3, 131072, 65534, 3, 4, 65535, 3, 65537, 0, 3, 65537, 1, 3, 65537, 2, 3, 65537, 3, 3, 65537, 4, 3, 65538, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 3, 65536, 15, 3, 65538, 16, 1, 0, 131069, 1, 0, 131070, 3, 65536, 131071, 3, 65537, 65536, 3, 65537, 65537, 3, 65537, 65538, 3, 65537, 65539, 3, 65537, 65540, 3, 65539, 65541, 3, 1, 65542, 3, 2, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 3, 65536, 65551, 3, 65538, 196605, 1, 0, 196606, 3, 65536, 196607, 3, 65537, 131072, 3, 65537, 131073, 3, 65537, 131074, 3, 65537, 131075, 3, 65537, 131076, 3, 65537, 131077, 3, 65537, 131078, 3, 65539, 131079, 3, 1, 131080, 3, 1, 131081, 3, 1, 131082, 3, 1, 131083, 3, 2, 131084, 1, 0, 131085, 1, 0, 131086, 3, 65536, 131087, 3, 65538, 262141, 1, 0, 262142, 3, 65536, 262143, 3, 65537, 196608, 3, 65537, 196609, 3, 65537, 196610, 3, 65537, 196611, 3, 65537, 196612, 3, 65537, 196613, 3, 65537, 196614, 3, 65537, 196615, 3, 65537, 196616, 3, 65537, 196617, 3, 65537, 196618, 3, 65537, 196619, 3, 65539, 196620, 3, 1, 196621, 3, 1, 196622, 3, 65540, 196623, 3, 65538, 327677, 3, 0, 327678, 3, 65540, 327679, 3, 65537, 262144, 3, 65537, 262145, 3, 65537, 262146, 3, 65537, 262147, 3, 65537, 262148, 3, 65537, 262149, 3, 65537, 262150, 3, 65537, 262151, 3, 65537, 262152, 3, 65537, 262153, 3, 65537, 262154, 3, 3, 262155, 3, 131073, 262156, 3, 131073, 262157, 3, 131073, 262158, 3, 131073, 262159, 3, 131074, 393213, 3, 131072, 393214, 3, 131073, 393215, 3, 131073, 327680, 3, 131073, 327681, 3, 131073, 327682, 3, 131073, 327683, 3, 131073, 327684, 3, 131073, 327685, 3, 131073, 327686, 3, 131073, 327687, 3, 131073, 327688, 3, 131073, 327689, 3, 131073, 327690, 3, 131074, 327692, 1, 0, 327693, 1, 0, 458749, 1, 0, 458750, 1, 0, 458751, 3, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 524285, 1, 0, 524286, 1, 0, 524287, 1, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 3, 0, 458756, 1, 0, 458757, 1, 0, 458759, 1, 0, 458760, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 655372, 1, 0, 655373, 1, 0 )
 script = ExtResource( 3 )
 
-[node name="PrimRose" parent="." instance=ExtResource( 1 )]
-position = Vector2( 378.129, 286.749 )
+[node name="Humans" type="Node2D" parent="."]
+script = ExtResource( 7 )
 
-[node name="Human" parent="." instance=ExtResource( 5 )]
-material = ExtResource( 2 )
-position = Vector2( 175.94, 67.6954 )
-human_name = ""
-lost_object_ref = NodePath("../LostObjects/ColorThing")
+[node name="Human2" parent="Humans" instance=ExtResource( 5 )]
+position = Vector2( 187.918, 197.356 )
+lost_object_ref = NodePath("../../LostObjects/Book")
 
-[node name="Human2" parent="." instance=ExtResource( 5 )]
-material = ExtResource( 2 )
-position = Vector2( 41.1285, 289.441 )
-human_name = ""
-lost_object_ref = NodePath("../LostObjects/Book")
+[node name="Human" parent="Humans" instance=ExtResource( 5 )]
+position = Vector2( 300, 85.534 )
+lost_object_ref = NodePath("../../LostObjects/ColorThing")
 
 [node name="LostObjects" type="Node" parent="."]
 
@@ -93,8 +140,50 @@ texture = ExtResource( 8 )
 
 [node name="Book" parent="LostObjects" instance=ExtResource( 4 )]
 position = Vector2( 709.559, 185.666 )
-texture = ExtResource( 7 )
-[connection signal="happy_human" from="Human" to="TileMap" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Human" to="Human" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Human2" to="TileMap" method="_on_Human_happy_human"]
-[connection signal="happy_human" from="Human2" to="Human2" method="_on_Human_happy_human"]
+texture = ExtResource( 11 )
+
+[node name="Mask" type="Node2D" parent="."]
+position = Vector2( 320.324, 213.408 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Mask"]
+margin_left = -320.0
+margin_top = -213.0
+margin_right = 501.0
+margin_bottom = 247.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="Mask"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Mask/Viewport"]
+visible = false
+texture = SubResource( 2 )
+script = ExtResource( 9 )
+
+[node name="Camera2D" type="Camera2D" parent="Mask/Viewport"]
+position = Vector2( 291.505, 180.823 )
+current = true
+
+[node name="PrimRose" parent="." instance=ExtResource( 1 )]
+position = Vector2( 320.638, 182.793 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PrimRose"]
+remote_path = NodePath("../../Mask/Viewport/Camera2D")
+
+[node name="PostProcessing" type="Sprite" parent="PrimRose"]
+show_behind_parent = true
+material = SubResource( 5 )
+texture = SubResource( 6 )
+flip_v = true
+script = SubResource( 7 )
+[connection signal="happy_human" from="Humans/Human2" to="Humans/Human2" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Humans/Human2" to="TileMap" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Humans/Human" to="Humans/Human" method="_on_Human_happy_human"]
+[connection signal="happy_human" from="Humans/Human" to="TileMap" method="_on_Human_happy_human"]

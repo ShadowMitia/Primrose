@@ -21,6 +21,22 @@ func _physics_process(delta):
 	
 	if velocity.length() > 0:
 		get_tree().root.get_child(0).get_node("Humans").update_nodes()
+		$AnimatedSprite.play()
+	else:
+		$AnimatedSprite.stop()
+	
+	if abs(velocity.x) > abs(velocity.y):
+		if velocity.x > 0:
+			$AnimatedSprite.flip_h = false
+			$AnimatedSprite.play("walk_sideways")
+		else:
+			$AnimatedSprite.flip_h = true
+			$AnimatedSprite.play("walk_sideways")
+	else:
+		if velocity.y < 0:
+			$AnimatedSprite.play("walk_up")
+		else:
+			$AnimatedSprite.play("walk_down")
 	
 	velocity = move_and_slide(velocity, Vector2.ZERO)
 
